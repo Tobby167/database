@@ -1,0 +1,33 @@
+ RENAME TABLE employees TO play;
+
+ALTER TABLE  employees
+ADD phone_number varchar(15);
+
+
+
+ALTER TABLE  employees
+RENAME COLUMN phone_number TO email;
+
+ALTER TABLE  employees
+MODIFY COLUMN email VARCHAR (100)
+
+
+
+ALTER TABLE  employees
+MODIFY email VARCHAR (100)
+AFTER last_name;
+
+ALTER TABLE employees
+DROP COLUMN email;
+
+
+INSERT INTO employees
+VALUES  (1, "Eugene", "Krabs", 25.50, "2015-01-02"),
+		(2, "Squidward", "Tentacles", 15.50,"2025-01-03"), 
+        (3, "Spongebob", "Squarepants", 12.50,"2025-01-03"), 
+        (4, "Patrick", "Star", 12.50,"2025-01-04"), 
+        (5, "Sandy", "Cheeks", 17.25,"2025-01-05");
+        
+        
+
+        

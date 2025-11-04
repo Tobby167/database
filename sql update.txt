@@ -1,0 +1,176 @@
+create database employees;
+drop database mybd;
+use employees;
+alter database employees read only = 1; -- to set to read only--
+alter database employees read only = 0; -- to remove from read only--
+
+
+
+
+
+------------- creating a table --------------
+create table employees(
+	employee_id int ,
+    first_name varchar(50),
+    last_name varchar(50),
+    hourly_pay decimal(5,2),
+    hire_date date
+)
+
+
+select  * from Employees;
+
+ RENAME TABLE workers TO Employees; -- to rename a table --
+
+ALTER TABLE  employees
+ADD phone_number varchar(15);
+-- to add more --
+
+
+ALTER TABLE  employees
+RENAME COLUMN phone_number TO email;
+-- rename column name --
+
+
+ALTER TABLE  employees
+MODIFY COLUMN email VARCHAR (100)
+-- to change data-type --
+
+
+
+ALTER TABLE  employees
+MODIFY email VARCHAR (100)
+AFTER last_name;
+-- to change placement of column. you can also use first to make it come first--
+
+
+
+ALTER TABLE employees
+DROP COLUMN email;
+-- to remove a column --
+
+
+
+
+ delete from employees where employee_id = 6;
+-- to remove a row -- 
+ 
+
+----------  inserting into a table   ----------
+
+INSERT INTO employees
+VALUES  (1, "Eugene", "Krabs", 25.50, "2015-01-02"),
+		(2, "Squidward", "Tentacles", 15.50,"2025-01-03"),
+        (3, "Spongebob", "Squarepants", 12.50,"2025-01-03"),
+        (4, "Patrick", "Star", 12.50,"2025-01-04"),
+        (5, "Sandy", "Cheeks", 17.25,"2025-01-05");
+        
+        
+INSERT INTO employees (employee_id, first_name, last_name)
+VALUES	(6, "Sheldon", "Plankton");
+
+
+
+
+
+
+
+
+-------- querying data from a table ----------
+select  *
+from employees
+where hire_date is null;
+
+
+-- how to select. you can also use first_name, last_name to search instead of going far as putting "where" . you can make use of operators like <, >, <=, >=, !=, is null or is not null --
+
+
+
+----- updating and deleting data from a table -----
+
+
+update employees
+set hourly_pay = 10.25,
+	hire_date = "2025-01-05"
+where employee_id = 6;
+
+-- this update's a particular line in the row --
+
+
+
+update employees
+set hourly_pay = 10.25,
+
+-- this updates the whole column--
+
+
+ delete from employees 
+ where employee_id = 6;
+ 
+
+-- to remove a row -- 
+
+
+
+select  *from employees
+
+
+
+-- auto commit, commit and rollback ----------
+delete from employees 
+select  *from employees
+
+
+set autocommit = off
+commit;
+rollback;
+
+
+
+-- getting the curent date and time in mysql --------------------
+create table test(
+	my_date date,
+    my_time time,
+    my_dateime datetime
+);
+
+INSERT INTO test
+VALUES  (current_date(), current_time(), now());
+
+INSERT INTO test
+VALUES  (current_date() + 1, null, null);
+
+INSERT INTO test
+VALUES  (current_date() - 1, null, null);
+
+select * from test
+
+
+
+
+
+
+
+-- the unique constraint ----------------
+create table products (
+	products_id int,
+    products_name varchar(25) unique,
+    price decimal(4, 2)
+);
+
+ALTER TABLE products
+add constraint
+unique(prouct_name)
+
+INSERT INTO products
+VALUES  (100, "hamburger", 3.99),
+		(101, "fries", 1.89),
+        (102, "soda", 100),
+        (103, "ice cream", 1.49),
+        (104, "fries", 1.79);
+        
+        
+select * from products
+
+
+commit;
